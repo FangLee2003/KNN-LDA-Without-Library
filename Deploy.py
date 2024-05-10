@@ -274,11 +274,11 @@ st.header("Data Preprocessing")
 
 #feature scaling
 st.subheader("Feature Scaling")
-if st.button("Scale", type="primary"):
-    fs=FeatureScaling(X,y)
-    X=fs.fit_transform_X()
 
-    st.write(X)
+fs=FeatureScaling(X,y)
+X=fs.fit_transform_X()
+
+st.write(X)
 # ss=StandardScaler()
 # X=ss.fit_transform(X)
 
@@ -296,16 +296,15 @@ st.pyplot(fig)
 
 # %%
 
-st.subheader("Linear Discriminant Analysis")
-if st.button("Reduce dimension", type="primary"):
-    lda=LDA(2)
-    X=lda.transform(X,y)
-    print(X)
+st.subheader("Reduce dimension with Linear Discriminant Analysis")
+lda=LDA(2)
+X=lda.transform(X,y)
+print(X)
 
-    fig = plt.figure(figsize=(6,6))
-    for i in range(X.shape[0]):
-        plt.scatter(X[i,0],X[i,1],c=clr[y[i]-1])
-    st.pyplot(fig)
+fig = plt.figure(figsize=(6,6))
+for i in range(X.shape[0]):
+    plt.scatter(X[i,0],X[i,1],c=clr[y[i]-1])
+st.pyplot(fig)
 
 # %%
 #training and testing set size
@@ -373,7 +372,7 @@ if st.button("Run", type="primary"):
 
 # %%
 # Visualising the Training set results for our implementation
-st.subheader("K-NN training results visualization")
+st.subheader("Training results visualization")
 
 l=time.time()
 
@@ -393,7 +392,7 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('green', 'orange', 'purple'))(i), label = j,marker='.')
     
-plt.title('K-NN (training set) using our implementation')
+# plt.title('K-NN (training set) using our implementation')
 plt.xlabel('Wine')
 plt.ylabel('Customer Segment')
 plt.legend()
@@ -404,7 +403,7 @@ r=time.time()
 print("Time required for plotting is: "+str(r-l)+" seconds")
 # %%
 # Visualising the Test set results for our implementation
-st.subheader("K-NN testing results visualization")
+st.subheader("Testing results visualization")
 
 l=time.time()
 
@@ -424,7 +423,7 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('green', 'orange', 'purple'))(i), label = j,marker='.')
     
-plt.title('K-NN (test set) using our implementation')
+# plt.title('K-NN (test set) using our implementation')
 plt.xlabel('Wine')
 plt.ylabel('Customer Segment')
 plt.legend()
