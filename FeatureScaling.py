@@ -93,4 +93,3 @@ class FeatureScaling:
     def returnY(self):
         return self.y
         
-        
